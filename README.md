@@ -1,40 +1,40 @@
 # git-setup
 
-本工具會全自動設定 Git 版控環境，並且跨平台支援 Windows, Linux, macOS 等作業系統的命令列環境，尤其針對中文環境經常會出現亂碼的問題都會完整的解決。
+本工具会全自动设定 Git 版控环境，并且跨平台支援 Windows, Linux, macOS 等作业系统的命令列环境，尤其针对中文环境经常会出现乱码的问题都会完整的解决。
 
-## 先決條件
+## 先决条件
 
 - [Node.js](https://nodejs.org/en/) 10.13.0 以上版本
-- [Git](https://git-scm.com/) 任意版本 (建議升級到最新版)
+- [Git](https://git-scm.com/) 任意版本 (建议升级到最新版)
 
 ## 使用方式
 
 ```sh
-npx @willh/git-setup
+npx @jiahe/git-setup
 ```
 
-- 設定過程會詢問你的 `user.name` 與 `user.email` 資訊
-  - Email 會進行格式驗證，格式錯誤會拒絕設定下去
-- 所有 Git 設定都會以 `--global` 為主 (`~/.gitconfig`)
-- Windows 平台會自動設定 `LC_ALL` 與 `LANG` 使用者環境變數
-  - Linux, macOS 平台會提醒進行設定
+- 设定过程会询问你的 `user.name` 与 `user.email` 资讯
+- Email 会进行格式验证，格式错误会拒绝设定下去
+- 所有 Git 设定都会以 `--global` 为主 (`~/.gitconfig`)
+- Windows 平台会自动设定 `LC_ALL` 与 `LANG` 使用者环境变数
+- Linux, macOS 平台会提醒进行设定
 
-## 設定內容
+## 设定内容
 
 ```sh
 git config --global user.name  ${name}
 git config --global user.email  ${email}
 
-# 設定打錯命令時 3 秒內會自動做出判斷
+# 设定打错命令时 3 秒内会自动做出判断
 git config --global help.autocorrect 30
 
-# 現在大多編輯器都已經能正確處理 CRLF 字元，不再需要自動轉換了！
+# 现在大多编辑器都已经能正确处理 CRLF 字元，不再需要自动转换了！
 git config --global core.autocrlf false
 
-# 為了能正確顯示 UTF-8 中文字
+# 为了能正确显示 UTF-8 中文字
 git config --global core.quotepath false
 
-# 在命令列環境下自動標示顏色
+# 在命令列环境下自动标示颜色
 git config --global color.diff auto
 git config --global color.status auto
 git config --global color.branch auto
@@ -54,37 +54,26 @@ git config --global alias.lo   "log --oneline"
 git config --global alias.ls   "log --show-signature"
 git config --global alias.ll   "log --pretty=format:'%h %ad | %s%d [%Cgreen%an%Creset]' --graph --date=short"
 git config --global alias.lg   "log --graph --pretty=format:'%Cred%h%Creset %ad |%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset [%Cgreen%an%Creset]' --abbrev-commit --date=short"
+git config --gloabl alias.sbtime !"for k in `git branch|perl -pe s/^..//`;do echo `git show --pretty=format:\"%Cgreen%ci %Cblue%cr%Creset\" $k|head -n 1`\\\t$k;done|sort"
+git config --gloabl alias.sbrtime !"for k in `git branch -r|perl -pe s/^..//`;do echo `git show --pretty=format:\"%Cgreen%ci %Cblue%cr%Creset\" $k|head -n 1`\\\t$k;done|sort"
 git config --global alias.alias "config --get-regexp ^alias\."
 
-# 必須是 Windows 平台才會執行以下設定
+# 必须是 Windows 平台才会执行以下设定
 git config --global alias.ignore '!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi'
 git config --global alias.iac '!giac() { git init && git add . && git commit -m 'Initial commit' ;}; giac'
 
-# 必須是 Linux/macOS 平台才會執行以下設定
+# 必须是 Linux/macOS 平台才会执行以下设定
 git config --global alias.ignore '!'"gi() { curl -sL https://www.gitignore.io/api/\$@ ;}; gi"
 git config --global alias.iac '!'"giac() { git init && git add . && git commit -m 'Initial commit' ;}; giac"
 
 
-# 必須是 Windows 平台且有安裝 TortoiseGit 才會設定 tlog 這個 alias
+# 必须是 Windows 平台且有安装 TortoiseGit 才会设定 tlog 这个 alias
 git config --global alias.tlog "!start 'C:\\PROGRA~1\\TortoiseGit\\bin\\TortoiseGitProc.exe' /command:log /path:."
 
-# 必須是 Windows 平台才會將預設編輯器設定為 notepad
+# 必须是 Windows 平台才会将预设编辑器设定为 notepad
 git config --global core.editor notepad
 ```
 
-## 提供建議
+## 提供建议
 
-如果您對本工具有任何想法，歡迎到[這裡](https://github.com/doggy8088/git-setup/issues)留言討論！
-
-## 作者資訊
-
-- **Will 保哥**
-- 部落格：https://blog.miniasp.com/
-- 粉絲團：https://www.facebook.com/will.fans
-- 實體課程：https://coolrare.accupass.com/
-- 線上課程：https://www.udemy.com/user/coolrare (可私訊粉絲團索取優惠券代碼)
-
-## 相關連結
-
-- [2.7 Git 基礎 - Git Aliases](https://git-scm.com/book/zh-tw/v2/Git-%E5%9F%BA%E7%A4%8E-Git-Aliases)
-- [Creating CLI Executable global npm module](https://medium.com/@thatisuday/creating-cli-executable-global-npm-module-5ef734febe32)
+如果您对本工具有任何想法，欢迎到[这里](https://github.com/iamxiaojianzheng/git-setup/issues)留言讨论！
