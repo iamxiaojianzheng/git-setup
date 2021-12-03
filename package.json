@@ -1,0 +1,24 @@
+{
+  "name": "@jiahe/git-setup",
+  "version": "1.0.0",
+  "description": "A utility that helps to setup common Git config and alias settings",
+  "bin": "./bin/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iamxiaojianzheng/git-setup"
+  },
+  "bugs": {
+    "url": "https://github.com/iamxiaojianzheng/git-setup/issues"
+  },
+  "engines": {
+    "node": ">= 10.13.0"
+  },
+  "keywords": [
+    "git",
+    "setup",
+    "config"
+  ],
+  "homepage": "https://github.com/iamxiaojianzheng/git-setup",
+  "author": "JIAHE",
+  "license": "MIT"
+}
